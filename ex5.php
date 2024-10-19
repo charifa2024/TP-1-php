@@ -9,9 +9,15 @@ function detecterMotsCles($texte, $motsCommuns) {
     // Exclure les mots courants
     $motsFiltrés = array_diff($mots, $motsCommuns);
     
-    // Compter la fréquence des mots restants
-    $frequenceMots = array_count_values($motsFiltrés);
-    
+    // Compter la fréquence des mots restants manuellement
+    $frequenceMots = [];
+    foreach ($motsFiltrés as $mot) {
+        if (isset($frequenceMots[$mot])) {
+            $frequenceMots[$mot]++;
+        } else {
+            $frequenceMots[$mot] = 1;
+        }
+    }  
     // Trier les mots par fréquence décroissante
     arsort($frequenceMots);
     
